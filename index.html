@@ -1,235 +1,223 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Página para Recordar – Mujer y Cultura / FIASGU</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --cream: #f5f0e8;
-      --parchment: #ede5d0;
-      --brown: #5c3d1e;
-      --gold: #b8860b;
-      --rust: #8b4513;
-      --dark: #2a1a0a;
-      --text: #3a2a10;
-      --light-text: #7a6040;
-    }
-
-    body {
-      background-color: var(--cream);
-      color: var(--text);
-      font-family: 'Lora', Georgia, serif;
-      line-height: 1.8;
-    }
-
-    /* ── Header ── */
-    header {
-      background: linear-gradient(160deg, var(--brown) 0%, var(--dark) 100%);
-      color: var(--cream);
-      text-align: center;
-      padding: 3.5rem 1.5rem 2.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    header::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 40px,
-        rgba(255,255,255,0.03) 40px,
-        rgba(255,255,255,0.03) 41px
-      );
-      pointer-events: none;
-    }
-    header .subtitle {
-      font-family: 'Lora', serif;
-      font-style: italic;
-      color: var(--gold);
-      letter-spacing: 0.15em;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-      opacity: 0.9;
-    }
-    header h1 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(1.8rem, 5vw, 3.2rem);
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 0.5rem;
-    }
-    header h2 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-style: italic;
-      font-size: clamp(1rem, 3vw, 1.6rem);
-      font-weight: 400;
-      color: #d4b896;
-      margin-bottom: 1.5rem;
-    }
-    header p.tagline {
-      max-width: 600px;
-      margin: 0 auto;
-      font-size: 0.95rem;
-      color: #c8b090;
-      font-style: italic;
-    }
-
-    /* ── Nav ── */
-    nav {
-      background: var(--brown);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0;
-      border-bottom: 3px solid var(--gold);
-    }
-    nav a {
-      color: var(--cream);
-      text-decoration: none;
-      padding: 0.85rem 1.2rem;
-      font-size: 0.82rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-family: 'Lora', serif;
-      transition: background 0.2s, color 0.2s;
-      border-right: 1px solid rgba(255,255,255,0.1);
-    }
-    nav a:hover { background: var(--gold); color: var(--dark); }
-
-    /* ── Main layout ── */
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2.5rem 1.5rem 4rem;
-    }
-
-    /* ── Section headers ── */
-    .section-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.5rem;
-      color: var(--brown);
-      border-bottom: 2px solid var(--gold);
-      padding-bottom: 0.4rem;
-      margin: 2.5rem 0 1.2rem;
-    }
-
-    /* ── Intro story ── */
-    .story {
-      background: var(--parchment);
-      border-left: 4px solid var(--gold);
-      padding: 1.8rem 2rem;
-      border-radius: 0 4px 4px 0;
-      margin-bottom: 2rem;
-      font-size: 1rem;
-    }
-    .story p { margin-bottom: 1rem; }
-    .story p:last-child { margin-bottom: 0; }
-    .story .firma {
-      margin-top: 1.2rem;
-      font-style: italic;
-      color: var(--rust);
-      font-weight: 600;
-    }
-
-    /* ── Links grid ── */
-    .links-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    .link-card {
-      background: white;
-      border: 1px solid #d9cdb8;
-      border-radius: 6px;
-      padding: 1rem 1.2rem;
-      text-decoration: none;
-      color: var(--text);
-      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-    }
-    .link-card:hover {
-      border-color: var(--gold);
-      box-shadow: 0 3px 12px rgba(92,61,30,0.12);
-      transform: translateY(-2px);
-    }
-    .link-card .icon {
-      font-size: 1.4rem;
-      flex-shrink: 0;
-      margin-top: 0.1rem;
-    }
-    .link-card .label {
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: var(--brown);
-      display: block;
-      margin-bottom: 0.15rem;
-    }
-    .link-card .desc {
-      font-size: 0.8rem;
-      color: var(--light-text);
-      font-style: italic;
-    }
-
-    /* ── Videos list ── */
-    .video-list { list-style: none; margin-bottom: 2rem; }
-    .video-list li {
-      border-bottom: 1px solid #d9cdb8;
-      padding: 0.6rem 0;
-    }
-    .video-list li:last-child { border-bottom: none; }
-    .video-list a {
-      color: var(--rust);
-      text-decoration: none;
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: color 0.2s;
-    }
-    .video-list a::before { content: '▶'; font-size: 0.7rem; color: var(--gold); }
-    .video-list a:hover { color: var(--gold); }
-
-    /* ── Pages section ── */
-    .pages-list { list-style: none; margin-bottom: 2rem; }
-    .pages-list li {
-      padding: 0.5rem 0;
-      border-bottom: 1px solid #d9cdb8;
-    }
-    .pages-list a {
-      color: var(--rust);
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: color 0.2s;
-    }
-    .pages-list a:hover { color: var(--gold); text-decoration: underline; }
-    .pages-list .arrow { color: var(--gold); margin-right: 0.4rem; }
-
-    /* ── Footer ── */
-    footer {
-      background: var(--dark);
-      color: #8a7060;
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.82rem;
-      font-style: italic;
-    }
-    footer a { color: var(--gold); text-decoration: none; }
-
-    /* ── Responsive ── */
-    @media (max-width: 600px) {
-      nav a { padding: 0.65rem 0.75rem; font-size: 0.75rem; }
-      .story { padding: 1.2rem 1rem; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Página para Recordar – Mujer y Cultura / FIASGU</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #f5f0e8;
+  --parchment: #ede5d0;
+  --brown: #5c3d1e;
+  --gold: #b8860b;
+  --rust: #8b4513;
+  --dark: #2a1a0a;
+  --text: #3a2a10;
+  --light-text: #7a6040;
+}
+body {
+  background-color: var(--cream);
+  color: var(--text);
+  font-family: 'Lora', Georgia, serif;
+  line-height: 1.8;
+}
+/* ── Header ── */
+header {
+  background: linear-gradient(160deg, var(--brown) 0%, var(--dark) 100%);
+  color: var(--cream);
+  text-align: center;
+  padding: 3.5rem 1.5rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 40px,
+    rgba(255,255,255,0.03) 40px,
+    rgba(255,255,255,0.03) 41px
+  );
+  pointer-events: none;
+}
+header .subtitle {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  opacity: 0.9;
+}
+header h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.8rem, 5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+header h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  font-weight: 400;
+  color: #d4b896;
+  margin-bottom: 1.5rem;
+}
+header p.tagline {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 0.95rem;
+  color: #c8b090;
+  font-style: italic;
+}
+/* ── Nav ── */
+nav {
+  background: var(--brown);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+  border-bottom: 3px solid var(--gold);
+}
+nav a {
+  color: var(--cream);
+  text-decoration: none;
+  padding: 0.85rem 1.2rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: 'Lora', serif;
+  transition: background 0.2s, color 0.2s;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+nav a:hover { background: var(--gold); color: var(--dark); }
+/* ── Main layout ── */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+/* ── Section headers ── */
+.section-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  color: var(--brown);
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 0.4rem;
+  margin: 2.5rem 0 1.2rem;
+}
+/* ── Intro story ── */
+.story {
+  background: var(--parchment);
+  border-left: 4px solid var(--gold);
+  padding: 1.8rem 2rem;
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+.story p { margin-bottom: 1rem; }
+.story p:last-child { margin-bottom: 0; }
+.story .firma {
+  margin-top: 1.2rem;
+  font-style: italic;
+  color: var(--rust);
+  font-weight: 600;
+}
+/* ── Links grid ── */
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.link-card {
+  background: white;
+  border: 1px solid #d9cdb8;
+  border-radius: 6px;
+  padding: 1rem 1.2rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.link-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 3px 12px rgba(92,61,30,0.12);
+  transform: translateY(-2px);
+}
+.link-card .icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+.link-card .label {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--brown);
+  display: block;
+  margin-bottom: 0.15rem;
+}
+.link-card .desc {
+  font-size: 0.8rem;
+  color: var(--light-text);
+  font-style: italic;
+}
+/* ── Videos list ── */
+.video-list { list-style: none; margin-bottom: 2rem; }
+.video-list li {
+  border-bottom: 1px solid #d9cdb8;
+  padding: 0.6rem 0;
+}
+.video-list li:last-child { border-bottom: none; }
+.video-list a {
+  color: var(--rust);
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.2s;
+}
+.video-list a::before { content: '▶'; font-size: 0.7rem; color: var(--gold); }
+.video-list a:hover { color: var(--gold); }
+/* ── Pages section ── */
+.pages-list { list-style: none; margin-bottom: 2rem; }
+.pages-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #d9cdb8;
+}
+.pages-list a {
+  color: var(--rust);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+.pages-list a:hover { color: var(--gold); text-decoration: underline; }
+.pages-list .arrow { color: var(--gold); margin-right: 0.4rem; }
+/* ── Footer ── */
+footer {
+  background: var(--dark);
+  color: #8a7060;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.82rem;
+  font-style: italic;
+}
+footer a { color: var(--gold); text-decoration: none; }
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  nav a { padding: 0.65rem 0.75rem; font-size: 0.75rem; }
+  .story { padding: 1.2rem 1rem; }
+}
+</style>
 </head>
 <body>
 
@@ -258,19 +246,12 @@
     <h2 class="section-title">Historia</h2>
     <div class="story">
       <p>Esta página tiene como objeto recordar y valorar lo que un grupo de mujeres de El Escorial fueron realizando desde los años 70, en pro no sólo de su formación, sino de la de sus hijos y el desarrollo de su municipio, dando un aire nuevo a la vida municipal.</p>
-
       <p>La iniciativa la tomaría <strong>Concepción Núñez García</strong>, una manchega, nacida en Almadén (C. Real) que vuelve a su país tras una estancia de 5 años en Holanda. Casada y con 4 hijos en edad escolar, le sorprende la gran diferencia entre España y Holanda.</p>
-
       <p>Corren ya rumores de cambio y ella quiere participar en este cambio, que cree necesario, pero no ella sola. Quiere convencer a las mujeres de la necesidad que tienen de ser partícipes en esta nueva etapa: <em>"nuestros hijos necesitan unas madres que no sólo les preparen el cocido y les hagan las camas; necesitan mujeres formadas e informadas."</em></p>
-
       <p>Tras 3 años de calentar motores, estas mujeres — sin preocuparles la idea política a la que cada una pudiera pertenecer — unen sus fuerzas con un solo fin: su progreso y el de los suyos.</p>
-
       <p>En <strong>Octubre de 1975</strong>, logran por fin consolidar su grupo, <strong>Mujer y Cultura</strong>, coincidiendo con la muerte, ese mismo año, del Caudillo. Termina pues la larga dictadura.</p>
-
       <p>Las mejoras de los colegios, las relaciones padres-profesores, la reactivación de actos tradicionales, la formación extraescolar, educación de adultos, conferencias, cursos, jornadas… No olvidarán la colaboración del Servicio de Extensión Agraria. Con ello formarían, en 1983, la <strong>1ª cooperativa femenina</strong> — las mujeres recuerdan cómo alguna necesitaba todavía la autorización marital para poder participar.</p>
-
       <p>La cumbre de sus trabajos en el ámbito local sería la creación, en <strong>1984</strong>, de la primera Feria de Muestras en la C.A.M.: <strong>FIASGU</strong>. Ellas la crearon y gestionaron, bajo la dirección de Conchita, durante 9 años. El Ayuntamiento las apoyó incondicionalmente y nunca puso freno a estas decididas mujeres, que supieron abrir sus mentes al nuevo porvenir.</p>
-
       <p class="firma">— Firma: Concepción Núñez</p>
     </div>
   </section>
@@ -344,13 +325,6 @@
         <div>
           <span class="label">Reencuentro 2023</span>
           <span class="desc">Fotos del reencuentro</span>
-        </div>
-      </a>
-      <a class="link-card" href="https://heyzine.com/flip-book/941822458b.html#page/1" target="_blank" rel="noopener">
-        <span class="icon">📖</span>
-        <div>
-          <span class="label">Presentación Libreto</span>
-          <span class="desc">Flip-book interactivo</span>
         </div>
       </a>
       <a class="link-card" href="https://drive.google.com/file/d/1_H7r8z9OhDVemf-iOQC2QwXxbWKWpg1H/view?usp=drive_link" target="_blank" rel="noopener">
